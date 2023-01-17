@@ -1,0 +1,11 @@
+Just do:
+
+git add . 
+git commit -m 'scheduled commit'
+git push
+
+Or, if git is not in your path:
+
+"C:\Program Files\Git\bin\git.exe" add .
+"C:\Program Files\Git\bin\git.exe" commit -m 'scheduled commit'
+"C:\Program Files\Git\bin\git.exe" push

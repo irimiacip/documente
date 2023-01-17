@@ -1,0 +1,78 @@
+1. Se creeaza proiectul Java.
+
+Se salveaza tot in folderul care este indicat de salvare
+Fisierul pom.xml este salvat in aceasi locatie
+Contine in forma incipienta doar : 
+======================================================
+       <modelVersion>4.0.0</modelVersion>
+	   
+    <groupId>org.example</groupId>
+    <artifactId>Maven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+	
+	Se va adauga : dependinte + pluging + extra information, proprieties, profile + build section 
+=================================================================	
+se creaza o structura de foldere : 
+
+SRC/MAIN/Java 
+  java classes : 
+     - helper file
+	 - utilities
+	 - libraries
+	 - methods  
+	 * Se livreaza doar aplicatia din SRC/MAIN/Java impachetata in JAR sau WAR
+SRC/TEST/Java
+     - unit level test cases
+	 - automation test cases 
+	 - pentru ambele se poate folosi : Junit sau TestNg
+	* Pentru build and deploy nu este necasar SRC/TEST/Java !!! 
+	
+ Generam NOI :
+
+SRC/MAIN/Resources 
+     - configuration proprieties (config.proprieties)
+	 - xml files
+     - txt files	 
+* folosite de SRC/MAIN/Java 
+
+SRC/TEST/Resources  
+     - configuration proprieties (config.proprieties)
+	 - xml files
+     - txt files
+	 - testng.xml !!!! --> maintain testClasses 
+* folosite de SRC/TEST/Java	 
+
+
+2. Discutam despre DEPENDINTE din POM.XML (heart of maven project)
+
+<dependencies> d1,d2,d3......,dn</dependencies>
+d1=selenium , d2=junit , d3=log4j  
+maven project via pom.xml --> download from maven central repository dependencies specified 
+
+3.  Discutam despre PLUGINGS 
+
+    <build> </build>
+               compiler 
+			      will compile code fom SRC/MAIN/Java cu jdk version XXX
+			   surfire used to execute test-cases from SRC/TEST/Java (.xml file from testng)  
+			   
+4.  Concept : 
+                 -TestNg
+ SRC/TEST/Java
+ - Test1.Class
+ - Test2.Class
+ .............
+                ========> TestNG.xml  (listeners|groups)   ---->RUN MANUAL ---> generate HTML REPORT (for test)
+				                       -Test1, Test2, Test3....
+                      correct way :
+                                        POM.XML (surfire pluging) --> TestNG.xml      
+			               run mvn clean test --> all test ar run by maven and generate report
+	
+	OBS : testng --> generate test output folder
+	      mvn clean install --> generate TARGET folder witch contain : .JAR 
+	   
