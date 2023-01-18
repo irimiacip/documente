@@ -1,0 +1,56 @@
+link : https://www.youtube.com/watch?v=9RksQ5YT7FM
+
+1. Daca vreau sa verific ca un string contine : a
+[a] --> intoarce de cate ori se gaseste a in stringul respectiv
+2. Daca vreau sa verific ca un string contine : a sau b 
+[ab] --> intoarce de cate ori este a + de cate ori este b in string respectiv
+3. Daca vreau sa verific ca un string contine : orice caracter cu exceptia a,b,x
+    [^ayx] 
+stringul in care caut : v   -->result: 1 
+stringul in care caut : vb  -->result: 2 
+stringul in care caut : vbm -->result: 3
+stringul in care caut : va   -->result: 1
+stringul in care caut : vayx   -->result: 1
+stringul in care caut : vbmayx -->result: 3
+4. Daca vreau sa-mi intoarca toate caracterele de la a la z
+[a-z] , string : dfghrdhgdffhtrgnbvcggre --> result:23
+5. Daca vreau sa-mi intoarca toate caracterele de la A la Z
+[A-Z] , string : dfghrdhgdffhtrgnbvcggre --> result:0
+[A-Z] , string : AXED --> result:4
+6. Daca vreau sa-mi intoarca toate caracterele de la A la Z si de la a la z
+[a-z A-Z] , string : ADFVfgr123345 --> result:7
+7. Daca vreau sa-mi intoarca toate cifrele de la 0 la 9 
+[0-9]  , string : ADFVfgr123345 --> result:6
+
+Cuantificatori
+
+1. Daca vreau sa aflu de cate ori apare 
+ 
+ [a]+ , string a -> result : 1
+ [a]+ , string aa -> result : 1
+ [a]+ , string aba -> result : 2
+
+ [aa]+ , string a   -> result : 1
+ [aa]+ , string aa  -> result : 1
+ [aa]+ , string aba -> result : 2
+ 
+ 
+ 
+ Teorie : 
+ 
+ []? apare 0 sau 1
+ []+ apare 1 sau moretimes
+ []* apare 0 or more time
+ []{n} apare de n ori
+ []{n,} apare de n ori , sau n+x ori
+ []{n,y} apare de cel putin n ori , dar mai putin de y ori
+ 
+ 
+ Regex Meta-characters ?????
+ 
+ \d    [0-9]
+ \D    [^0-9]
+ \w    [a-zA-Z_0-9]
+ \W    [^\w]
+ 
+ OBS : \ tells comp to treat following characters as search characters : "+","."...

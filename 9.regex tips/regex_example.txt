@@ -1,0 +1,26 @@
+Example : 
+
+Patern shoul check if it is a mobile number : 
+     -start with 8 or 9
+     -total digit = 10	 
+
+[89][0-9]{9,9} 
+
+Patern for : 
+   -first character uppcase
+   -contain lower case alphabet
+   -only one digit allowed in between
+   
+   [A-Z][a-z]*[0-9][a-z]*
+   
+Patern for email-ID
+   ex : Test123@gmail.com
+        poate fi cu _ - . (Test123)
+
+		[a-zA-Z0-9_\-\.]+[@][a-z]+[\.][a-z]{2,3}
+		
+		numeadresa = [a-zA-Z0-9_\-\.]+
+		@ = @
+		gmail = [a-z]+
+		. = [\.]
+		com = [a-z]{2,3}
