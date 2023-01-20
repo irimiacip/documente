@@ -1,0 +1,51 @@
+proiect core : personal-core
+proiect extindere core : personal-extension-core
+
+===========================
+La nivel de personal-core : 
+===========================   
+    <groupId>org.example</groupId>
+    <artifactId>personal-core</artifactId>
+    <version>1.0-SNAPSHOT</version>
+	
+	<properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <selenium.java.version>4.1.3</selenium.java.version>
+    </properties>
+ 
+    <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.java.version}</version>
+        </dependency>
+    </dependencies>
+	
+=====================================	
+La nivel de personal-extension-core :
+=====================================	
+	<groupId>org.example</groupId>
+    <artifactId>personal-extension-core</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+	<properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <personal.core.version>1.0-SNAPSHOT</personal.core.version>
+    </properties>
+	
+	<dependencies>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>personal-core</artifactId>
+            <version>${personal.core.version}</version>
+        </dependency>
+    </dependencies>
+	
+	===================
+	Concluzie : deci proiectul extension-core va folosi toate clasele din proiectul personal-core 
+	Dupa o modificare din personal-core : MVN CLEAN INSTALL ( se regeneaza un jar-ul cu noile clase) 
+	                                      ar trebui sa se modifice automat pe un server versiunea
+    Apoi manual modificam versiunea in version din proiectul extension-core.
+                                        In consecinta se vor putea accesa clasele din proiectul sursa!!!	
