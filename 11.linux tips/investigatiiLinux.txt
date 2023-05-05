@@ -1,0 +1,34 @@
+host : eucaris.drpciv.staging
+
+ping eucaris.drpciv.staging ==> proxy : 172.22.8.18
+
+Ne logam pe serverul de PROXY si cautam in locatia  /etc/httpd/conf.d/locations numele aplicatiei din LINK : ex: dispatcher
+
+        grep -rni "dispatcher" /etc/httpd/conf.d/locations
+		
+Expected este sa gasim 2 servere pe post de balancer : 
+
+        BalancerMember "http://euc-app-01-162664.drpciv.staging:8180/dispatcher-api" loadfactor=2 hcmethod=HEAD hcuri=app-tester hcinterval=30
+		BalancerMember "http://euc-app-02-162664.drpciv.staging:8180/dispatcher-api" loadfactor=2 hcmethod=HEAD hcuri=app-tester hcinterval=30
+		
+	Explicatie : 
+      	       euc-app-01-162664.drpciv.staging 
+			   euc-app-02-162664.drpciv.staging
+		sunt cele 2 servere pe care este aplicatia
+    ping euc-app-01-162664.drpciv.staging --> 	172.22.8.12	
+	ping euc-app-02-162664.drpciv.staging --> 	172.22.8.5	
+
+Dupa ce ne conectam pe cele doua servere trebuie sa ajungem in fisierul de log corespunzator aplicatiei.
+In cazul de fata se afa in :	/opt/cbnie/****dispatcher-api****/logs/dispatcher-api.log
+
+comanda : tail -f /opt/cbnie/dispatcher-api/logs/dispatcher-api.log va afisa contentul din log
+
+comanda : grep "responseData" *_error_message.csv --> intoarce liniile care contin responseData
+comanda : grep "responseData" *_error_message.csv | grep "Not found" -v | grep "NO INFORMATION FOUND" -v | grep "INPUT NOT CORRECT" -v | grep "Input not correct" -v
+            --> intoarce liniile din _error_message care contin "responseData" DAR nu contin "Not found","INPUT NOT CORRECT","Input not correct"
+comanda : grep "Sistemul DGPCI a returnat o eroare" vrByCUI_history_errors.csv -A50 
+            --> intoarce urmatoarele 50 de linii dupa linia care contine "Sistemul DGPCI a returnat o eroare" din fisierul vrByCUI_history_errors.csv
+comanda : grep "Sistemul DGPCI a returnat o eroare" vrByCUI_history_errors.csv -B50			
+		   --> intoarce 50 de linii deasupra liniei care contine "Sistemul DGPCI a returnat o eroare" din fisierul vrByCUI_history_errors.csv
+comanda : grep "INTERNAL_SERVER_ERROR" errors.csv -wc
+           --> intoarce numarul de linii din fisierul errors.csv care contin "INTERNAL_SERVER_ERROR"  
